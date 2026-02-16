@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Une petite question...</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f5;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        img {
+            width: 150px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #btnOui {
+            background-color: #28a745;
+            color: white;
+            font-size: 20px;
+        }
+
+        #btnNon {
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+            position: relative;
+        }
+
+        #messagePerso {
+            margin-top: 15px;
+            color: #666;
+            font-style: italic;
+            height: 20px;
+        }
+
+        .success-message {
+            display: none;
+            font-size: 1.8rem;
+            color: #d63384;
+            animation: heartBeat 1.2s infinite;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+       <div style="font-size: 80px; margin-bottom: 20px;">❤️</div>
+        <h1>Est-ce que tu veux qu'on fête la Saint Valentin samedi le 14 ?</h1>
+
+        <div class="buttons">
+            <button id="btnOui" onclick="celebrer()">OUI</button>
+            <button id="btnNon" onclick="actionNon()">NON</button>
+        </div>
+        
+        <p id="messagePerso">Si tu choisis non, je serai triste...</p>
+    </div>
+
+    <div id="bravo" class="success-message">
+        <h1>Je savais que tu allais dire Oui ! 😍<br>Je t'aime d'amour ❤️</h1>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let fontSizeOui = 20;
+        let fontSizeNon = 16;
+        
+        const messages = [
+            "Si tu choisis non, je serai triste...",
+            "S'il te plaît bby... 🥺",
+            "Vraiment ? Tu es sûr ? 😢",
+            "Tu me brises le cœur...💔",
+            "Allez, dis oui ! 🌹",
+            "Ok, maintenant essaie de m'attraper ! 🏃‍♂️"
+        ];
+
+        function actionNon() {
+            clickCount++;
+            
+            if (clickCount < 5) {
+                // Grossir le bouton OUI et rétrécir le bouton NON
+                fontSizeOui += 20;
+                fontSizeNon = Math.max(5, fontSizeNon - 2);
+                
+                document.getElementById('btnOui').style.fontSize = fontSizeOui + "px";
+                document.getElementById('btnNon').style.fontSize = fontSizeNon + "px";
+                
+                // Changer le texte
+                document.getElementById('messagePerso').innerText = messages[clickCount];
+            } 
+            
+            if (clickCount >= 5) {
+                document.getElementById('messagePerso').innerText = messages[5];
+                activerEsquive();
+            }
+        }
+
+        function activerEsquive() {
+            const btnNon = document.getElementById('btnNon');
+            btnNon.style.position = 'absolute';
+            
+            // Fonction pour faire fuir le bouton
+            document.onmousemove = function(e) {
+                const mouseX = e.pageX;
+                const mouseY = e.pageY;
+                const btnRect = btnNon.getBoundingClientRect();
+                const btnCenterX = btnRect.left + btnRect.width / 2;
+                const btnCenterY = btnRect.top + btnRect.height / 2;
+
+                // Calcul de la distance entre la souris et le bouton
+                const dist = Math.sqrt(Math.pow(mouseX - btnCenterX, 2) + Math.pow(mouseY - btnCenterY, 2));
+
+                if (dist < 100) {
+                    const newX = Math.random() * (window.innerWidth - btnRect.width);
+                    const newY = Math.random() * (window.innerHeight - btnRect.height);
+                    btnNon.style.left = newX + "px";
+                    btnNon.style.top = newY + "px";
+                }
+            };
+        }
+
+        function celebrer() {
+            document.getElementById('mainCard').style.display = 'none';
+            document.getElementById('bravo').style.display = 'block';
+            document.body.style.backgroundColor = "#ffc0cb";
+        }
+    </script>
+</body>
+</html>

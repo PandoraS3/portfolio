@@ -1,0 +1,80 @@
+:root {
+  --bg: #0b0f14;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --green: #9eff00;
+  --text: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui;
+}
+
+body {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: var(--text);
+}
+
+section {
+  padding: 100px 8%;
+}
+
+h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #9ca3af;
+  margin-bottom: 40px;
+}
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.btn {
+  background: var(--green);
+  color: black;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+input, textarea {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 14px;
+  color: white;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6b7280;
+}
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(158,255,0,0.15);
+  color: var(--green);
+}
