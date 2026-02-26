@@ -13,9 +13,10 @@
   font-family: 'Inter', system-ui;
 }
 
-body {
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: var(--text);
+body, html {
+  background-color: #050810 !important;
+  margin: 0;
+  padding: 0;
 }
 
 section {
