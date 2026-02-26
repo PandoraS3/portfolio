@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images
@@ -12,15 +12,10 @@ import img7 from "../assets/turtlebot.jpg";
 import img8 from "../assets/web-app.jpg";
 import img9 from "../assets/cruise-app.jpg";
 
-// Vidéos (Assure-toi que les noms de fichiers correspondent exactement)
+// Vidéos
 import video1 from "../assets/pepper-demo.mp4";
-//import video2 from "../assets/ackermann-demo.mp4";
-//import video3 from "../assets/logistics-demo.mp4";
 import video4 from "../assets/ridesharing-demo.mp4";
-//import video5 from "../assets/climbing-demo.mp4";
-//import video6 from "../assets/erp-demo.mp4";
 import video7 from "../assets/turtlebot-demo.mp4";
-//import video8 from "../assets/web-demo.mp4";
 import video9 from "../assets/cruise-demo.mp4";
 
 const allProjects = [
@@ -32,7 +27,7 @@ const allProjects = [
     tech: ["Python", "OpenAI", "OpenCV", "Linux", "Node-RED", "NAOqi API"],
     image: img1,
     video: video1,
-    github: "https://github.com/PandoraS3" // Remplace par le lien direct du repo si besoin
+    github: "https://github.com/PandoraS3"
   },
   {
     id: 2,
@@ -41,7 +36,6 @@ const allProjects = [
     longDesc: "• Mathematical modeling, simulation, and visualization of Ackermann steering.\n• Derivation of inner and outer wheel steering relationships.\n• Interactive Simulink model with steering angle slider (-30° to +30°).\n• Coupled longitudinal and lateral vehicle control systems.\n• Analysis of dynamic limits (speed, curvature, lateral acceleration).\n• Visualization of trajectories and velocity vectors.",
     tech: ["MATLAB", "Simulink", "Control Systems", "Vehicle Dynamics"],
     image: img2,
-    //video: video2,
     github: "https://github.com/PandoraS3"
   },
   {
@@ -51,7 +45,6 @@ const allProjects = [
     longDesc: "• Optimization and comparison of parcel delivery systems in urban environments.\n• Heuristic route optimization (2-opt and neighborhood search).\n• Genetic algorithm for hub location and fleet size planning.\n• Multi-objective optimization (cost minimization and CO₂ reduction).\n• Simulation of 10,000 parcels/day using real geospatial data.",
     tech: ["Python", "Java", "Heuristic Search", "Genetic Algorithms"],
     image: img3,
-    //video: video3,
     github: "https://github.com/PandoraS3"
   },
   {
@@ -71,7 +64,6 @@ const allProjects = [
     longDesc: "• Development of a four-legged autonomous climbing robot.\n• Vision-based route detection using color sampling and contour analysis.\n• Recursive motion planning under kinematic and stability constraints.\n• Inverse kinematics using Jacobian transpose method.\n• Physics-based simulation in MuJoCo.",
     tech: ["Python", "OpenCV", "MuJoCo", "Robotics", "Motion Planning"],
     image: img5,
-    //video: video5,
     github: "https://github.com/PandoraS3"
   },
   {
@@ -81,7 +73,6 @@ const allProjects = [
     longDesc: "• Design and development of a cloud-native ERP system (SERP 24).\n• Frontend development with React; Backend with Spring Boot.\n• REST APIs (OpenAPI) and OAuth2 (Azure Entra ID).\n• Asynchronous communication with RabbitMQ / Azure Service Bus.\n• CI/CD pipelines, Docker, and Azure deployment.",
     tech: ["React", "Spring Boot", "Docker", "Azure", "RabbitMQ", "PostgreSQL"],
     image: img6,
-    //video: video6,
     github: "https://github.com/PandoraS3"
   },
   {
@@ -101,7 +92,6 @@ const allProjects = [
     longDesc: "• Web-based system for managing user registrations.\n• Development of a user-friendly interface for registration workflows.\n• Client-side validation and efficient data interaction.\n• Clean and responsive design using modern web standards.",
     tech: ["HTML", "CSS", "JavaScript", "Validation"],
     image: img8,
-    //video: video8,
     github: "https://github.com/PandoraS3"
   },
   {
@@ -118,12 +108,23 @@ const allProjects = [
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const scrollRef1 = useRef(null);
+  const scrollRef2 = useRef(null);
+
+  const scroll = (ref, direction) => {
+    const { current } = ref;
+    if (direction === 'left') {
+      current.scrollBy({ left: -430, behavior: 'smooth' });
+    } else {
+      current.scrollBy({ left: 430, behavior: 'smooth' });
+    }
+  };
 
   const row1 = allProjects.slice(0, 5);
   const row2 = allProjects.slice(5, 9);
 
   return (
-    <section id="projects" style={{ padding: "120px 0", background: "#050810" }}>
+    <section id="projects" style={{ padding: "120px 0", background: "#050810", position: "relative" }}>
       <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 60px" }}>
         <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1.2 }} viewport={{ once: true }} style={{ marginBottom: "60px" }}>
           <h2 style={{ fontSize: "4rem", color: "#fff", fontWeight: "900", marginBottom: "15px", letterSpacing: "-1px" }}>Projekte</h2>
@@ -131,20 +132,32 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-        <div className="no-scrollbar" style={rowStyle}>
-          {row1.map((p, i) => (
-            <motion.div key={p.id} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.15, duration: 0.8 }} viewport={{ once: true }} onClick={() => setSelectedProject(p)} style={{ minWidth: "400px", cursor: "pointer" }}>
-              <ProjectCard project={p} />
-            </motion.div>
-          ))}
+      <div style={{ display: "flex", flexDirection: "column", gap: "60px" }}>
+        
+        {/* LIGNE 1 */}
+        <div style={{ position: "relative", group: "true" }}>
+          <button onClick={() => scroll(scrollRef1, 'left')} className="arrow-btn" style={{ ...arrowBtnStyle, left: "20px" }}>‹</button>
+          <div className="no-scrollbar" ref={scrollRef1} style={rowStyle}>
+            {row1.map((p, i) => (
+              <motion.div key={p.id} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.15, duration: 0.8 }} viewport={{ once: true }} onClick={() => setSelectedProject(p)} style={{ minWidth: "400px", cursor: "pointer" }}>
+                <ProjectCard project={p} />
+              </motion.div>
+            ))}
+          </div>
+          <button onClick={() => scroll(scrollRef1, 'right')} className="arrow-btn" style={{ ...arrowBtnStyle, right: "20px" }}>›</button>
         </div>
-        <div className="no-scrollbar" style={rowStyle}>
-          {row2.map((p, i) => (
-            <motion.div key={p.id} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.15, duration: 0.8 }} viewport={{ once: true }} onClick={() => setSelectedProject(p)} style={{ minWidth: "400px", cursor: "pointer" }}>
-              <ProjectCard project={p} />
-            </motion.div>
-          ))}
+
+        {/* LIGNE 2 */}
+        <div style={{ position: "relative" }}>
+          <button onClick={() => scroll(scrollRef2, 'left')} className="arrow-btn" style={{ ...arrowBtnStyle, left: "20px" }}>‹</button>
+          <div className="no-scrollbar" ref={scrollRef2} style={rowStyle}>
+            {row2.map((p, i) => (
+              <motion.div key={p.id} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.15, duration: 0.8 }} viewport={{ once: true }} onClick={() => setSelectedProject(p)} style={{ minWidth: "400px", cursor: "pointer" }}>
+                <ProjectCard project={p} />
+              </motion.div>
+            ))}
+          </div>
+          <button onClick={() => scroll(scrollRef2, 'right')} className="arrow-btn" style={{ ...arrowBtnStyle, right: "20px" }}>›</button>
         </div>
       </div>
 
@@ -170,7 +183,6 @@ export default function Projects() {
                     {selectedProject.longDesc.split('\n').map((line, i) => <p key={i} style={{ marginBottom: '10px' }}>{line}</p>)}
                   </div>
                   <div style={{ marginTop: '40px', display: "flex", gap: '15px' }}>
-                    {/* LIENS VERS VIDÉO ET GITHUB */}
                     <a href={selectedProject.video} target="_blank" rel="noopener noreferrer" style={primaryLinkStyle}>
                       Demo Video
                     </a>
@@ -184,12 +196,18 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
-      <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .arrow-btn:hover { 
+          background: #b4ff00 !important; 
+          color: #000 !important;
+          box-shadow: 0 0 20px rgba(180, 255, 0, 0.4);
+        }
+      `}</style>
     </section>
   );
 }
 
-// COMPOSANT INTERNE ProjectCard
 function ProjectCard({ project }) {
   return (
     <div style={{ background: "rgba(255, 255, 255, 0.03)", borderRadius: "30px", border: "1px solid rgba(255, 255, 255, 0.08)", overflow: "hidden", height: "100%", backdropFilter: "blur(10px)" }}>
@@ -205,34 +223,31 @@ function ProjectCard({ project }) {
 }
 
 // STYLES
-const rowStyle = { display: "flex", gap: "30px", overflowX: "auto", padding: "10px 60px", scrollbarWidth: "none" };
+const rowStyle = { display: "flex", gap: "30px", overflowX: "auto", padding: "10px 60px", scrollbarWidth: "none", scrollBehavior: "smooth" };
+const arrowBtnStyle = { 
+  position: "absolute", 
+  top: "50%", 
+  transform: "translateY(-50%)", 
+  background: "rgba(180, 255, 0, 0.1)", 
+  border: "1px solid #b4ff00", 
+  color: "#b4ff00", 
+  borderRadius: "50%", 
+  width: "50px", 
+  height: "50px", 
+  fontSize: "2rem", 
+  cursor: "pointer", 
+  zIndex: 10, 
+  display: "flex", 
+  alignItems: "center", 
+  justifyContent: "center", 
+  transition: "all 0.3s ease", 
+  backdropFilter: "blur(5px)" 
+};
 const modalOverlayStyle = { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.92)", backdropFilter: "blur(20px)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 2000, padding: "20px" };
 const modalContentStyle = { background: "#0d111c", padding: "50px", borderRadius: "40px", maxWidth: "1000px", width: "100%", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", position: "relative" };
 const modalLayoutStyle = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "50px", alignItems: "start" };
 const modalImageStyle = { width: "100%", borderRadius: "20px", height: "300px", objectFit: "cover", border: "1px solid rgba(255,255,255,0.1)" };
 const tagStyle = { background: "rgba(180, 255, 0, 0.1)", color: "#b4ff00", padding: "6px 14px", borderRadius: "50px", fontSize: "0.8rem", fontWeight: "bold", border: "1px solid rgba(180, 255, 0, 0.2)" };
 const closeBtnStyle = { position: "absolute", top: "30px", right: "30px", background: "none", border: "none", color: "#fff", fontSize: "28px", cursor: "pointer" };
-
-// Styles transformés en liens (Anchor tags)
-const primaryLinkStyle = { 
-  background: "#b4ff00", 
-  color: "#000", 
-  padding: "14px 30px", 
-  borderRadius: "50px", 
-  fontWeight: "bold", 
-  textDecoration: "none",
-  textAlign: "center",
-  display: "inline-block"
-};
-
-const secondaryLinkStyle = { 
-  background: "transparent", 
-  color: "#fff", 
-  padding: "14px 30px", 
-  borderRadius: "50px", 
-  fontWeight: "bold", 
-  border: "1px solid rgba(255,255,255,0.2)",
-  textDecoration: "none",
-  textAlign: "center",
-  display: "inline-block"
-};
+const primaryLinkStyle = { background: "#b4ff00", color: "#000", padding: "14px 30px", borderRadius: "50px", fontWeight: "bold", textDecoration: "none", textAlign: "center", display: "inline-block" };
+const secondaryLinkStyle = { background: "transparent", color: "#fff", padding: "14px 30px", borderRadius: "50px", fontWeight: "bold", border: "1px solid rgba(255,255,255,0.2)", textDecoration: "none", textAlign: "center", display: "inline-block" };
