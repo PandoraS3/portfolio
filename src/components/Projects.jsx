@@ -11,12 +11,14 @@ import img6 from "../assets/erp-system.jpg";
 import img7 from "../assets/turtlebot.jpg";
 import img8 from "../assets/web-app.jpg";
 import img9 from "../assets/cruise-app.jpg";
+import img10 from "../assets/smartiot.jpg";
 
 // Vidéos
 import video1 from "../assets/pepper-demo.mp4";
 import video4 from "../assets/ridesharing-demo.mp4";
 import video7 from "../assets/turtlebot-demo.mp4";
 import video9 from "../assets/cruise-demo.mp4";
+import video10 from "../assets/smartsystem.mp4";
 
 const allProjects = [
   { id: 1, title: "Intelligent Library Assistant", desc: "Humanoid Robot (Pepper) assisting visitors using OpenAI API.", longDesc: "• Design and implementation of a social humanoid robot assisting library visitors.\n• Natural language dialogue using OpenAI API.\n• Facial emotion recognition with OpenCV.\n• System orchestration via Node-RED.", tech: ["Python", "OpenAI", "OpenCV", "Linux"], image: img1, video: video1, github: "https://github.com/PandoraS3" },
@@ -27,7 +29,8 @@ const allProjects = [
   { id: 6, title: "Cloud-Native ERP System", desc: "Microservices architecture with Spring Boot and React.", longDesc: "• Cloud-native ERP system (SERP 24).\n• Frontend React & Backend Spring Boot.\n• OAuth2 (Azure Entra ID).\n• Docker and Azure deployment.", tech: ["React", "Spring Boot", "Docker", "Azure"], image: img6, github: "https://github.com/PandoraS3" },
   { id: 7, title: "Autonomous Navigation TurtleBot", desc: "Obstacle detection and avoidance via Machine Learning.", longDesc: "• Autonomous navigation using ML.\n• Real-time obstacle detection.\n• Keras model for navigation decisions.\n• Control logic for robotic movement.", tech: ["Python", "Keras", "OpenAI", "ROS"], image: img7, video: video7, github: "https://github.com/PandoraS3" },
   { id: 8, title: "Web App Registration Management", desc: "System for managing user registration workflows.", longDesc: "• Web system for user registrations.\n• User-friendly interface.\n• Client-side validation.\n• Clean and responsive design.", tech: ["HTML", "CSS", "JavaScript"], image: img8, github: "https://github.com/PandoraS3" },
-  { id: 9, title: "Cruise Booking Desktop App", desc: "Desktop application with full CRUD for cruise management.", longDesc: "• Desktop app for cruise bookings.\n• Full CRUD functionality.\n• Graphical interface with Tkinter.\n• SQL database management.", tech: ["Python", "Tkinter", "SQL", "CRUD"], image: img9, video: video9, github: "https://github.com/PandoraS3/Anwendung-zur-Buchung-von-Schiffsreisen" }
+  { id: 9, title: "Cruise Booking Desktop App", desc: "Desktop application with full CRUD for cruise management.", longDesc: "• Desktop app for cruise bookings.\n• Full CRUD functionality.\n• Graphical interface with Tkinter.\n• SQL database management.", tech: ["Python", "Tkinter", "SQL", "CRUD"], image: img9, video: video9, github: "https://github.com/PandoraS3/Anwendung-zur-Buchung-von-Schiffsreisen" },
+  { id: 10, title: "Smart Library System (IoT & Robotics)", desc: "Smart IOT sysstem for a lybrary with Temi, Pepper and M5Stack", longDesc: "• Entwicklung einer Echtzeit-Erkennung freier und belegter Arbeitsplätze mittels IoT-Sensorik.\n• Implementierung einer Tablet-Oberfläche für Pepper mit HTML, CSS und JavaScript.\n• Integration der OpenAI API für kontextbezogene Sprachdialoge und natürliche Mensch-Roboter-Interaktion.\n• Entwicklung der Systemlogik mit Python unter Linux.", tech: ["Python", "HTML/CSS", "Linux", "OpenAI"], image: img10, video: video10, github: "https://github.com/PandoraS3/" }
 ];
 
 export default function Projects() {
