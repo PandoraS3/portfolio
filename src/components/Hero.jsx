@@ -78,6 +78,14 @@ export default function Hero() {
             <h3 style={statNumberStyle}>C1</h3>
             <p style={statLabelStyle}>Deutsch</p>
           </div>
+          <div style={statBoxStyle}>
+            <h3 style={statNumberStyle}>B2</h3>
+            <p style={statLabelStyle}>English</p>
+          </div>
+          <div style={statBoxStyle}>
+            <h3 style={statNumberStyle}>C2</h3>
+            <p style={statLabelStyle}>Französich</p>
+          </div>
         </div>
       </motion.div>
 
