@@ -64,7 +64,7 @@ export default function About() {
             >
               <h3 style={h3Style}>Akademischer Weg</h3>
               <div style={{ marginBottom: "20px" }}>
-                <h4 style={{ color: "#b4ff00", fontSize: "1.1rem" }}>Master: Data Science & Software Engineering</h4>
+                <h4 style={{ color: "#b4ff00", fontSize: "1.1rem" }}>Master: Data Science & Computer Engineering</h4>
                 <p style={{ color: "#7a8193", fontSize: "0.95rem" }}>Ostfalia Hochschule (Wolfenbüttel) | 2025 – Heute</p>
               </div>
               <div>
