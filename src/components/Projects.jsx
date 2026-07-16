@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images
-import img10 from "../assets/pepper-robot.jpg";
+import img1 from "../assets/pepper-robot.jpg";
 import img2 from "../assets/ackermann.jpg";
 import img3 from "../assets/logistics.jpg";
 import img4 from "../assets/ridesharing.jpg";
@@ -11,17 +11,17 @@ import img6 from "../assets/erp-system.jpg";
 import img7 from "../assets/turtlebot.jpg";
 import img8 from "../assets/web-app.jpg";
 import img9 from "../assets/cruise-app.jpg";
-import img1 from "../assets/smartiot.jpg";
+import img10 from "../assets/smartiot.jpg";
 
 // Vidéos
-import video10 from "../assets/pepper-demo.mp4";
+import video1 from "../assets/pepper-demo.mp4";
 import video4 from "../assets/ridesharing-demo.mp4";
 import video7 from "../assets/turtlebot-demo.mp4";
 import video9 from "../assets/cruise-demo.mp4";
-import video1 from "../assets/smartsystem.mp4";
+import video10 from "../assets/smartsystem.mp4";
 
 const allProjects = [
-  { id: 10, title: "Intelligent Library Assistant", desc: "Humanoid Robot (Pepper) assisting visitors using OpenAI API.", longDesc: "• Design and implementation of a social humanoid robot assisting library visitors.\n• Natural language dialogue using OpenAI API.\n• Facial emotion recognition with OpenCV.\n• System orchestration via Node-RED.", tech: ["Python", "OpenAI", "OpenCV", "Linux"], image: img1, video: video1, github: "https://github.com/PandoraS3" },
+  { id: 1, title: "Intelligent Library Assistant", desc: "Humanoid Robot (Pepper) assisting visitors using OpenAI API.", longDesc: "• Design and implementation of a social humanoid robot assisting library visitors.\n• Natural language dialogue using OpenAI API.\n• Facial emotion recognition with OpenCV.\n• System orchestration via Node-RED.", tech: ["Python", "OpenAI", "OpenCV", "Linux"], image: img1, video: video1, github: "https://github.com/PandoraS3" },
   { id: 2, title: "Ackermann Steering Simulation", desc: "Mathematical modeling and visualization of vehicle dynamics.", longDesc: "• Mathematical modeling, simulation, and visualization of Ackermann steering.\n• Derivation of steering relationships.\n• Interactive Simulink model.\n• Coupled vehicle control systems.", tech: ["MATLAB", "Simulink", "Control Systems"], image: img2, github: "https://github.com/PandoraS3" },
   { id: 3, title: "Green Logistics Optimization", desc: "Urban delivery optimization using evolutionary algorithms.", longDesc: "• Heuristic route optimization (2-opt).\n• Genetic algorithm for hub location.\n• Multi-objective optimization (cost & CO₂).\n• Simulation with real geospatial data.", tech: ["Python", "Java", "Genetic Algorithms"], image: img3, github: "https://github.com/PandoraS3/heuristiche-suche" },
   { id: 4, title: "Android Ride-Sharing App", desc: "Sustainable commuting platform for student ride-sharing.", longDesc: "• Native Android application.\n• Criteria-based ride search and booking.\n• Real-time chat and profile management.\n• Firebase backend integration.", tech: ["Android", "Firebase", "UX Design"], image: img4, video: video4, github: "https://github.com/PandoraS3/ridesharing" },
@@ -30,7 +30,7 @@ const allProjects = [
   { id: 7, title: "Autonomous Navigation TurtleBot", desc: "Obstacle detection and avoidance via Machine Learning.", longDesc: "• Autonomous navigation using ML.\n• Real-time obstacle detection.\n• Keras model for navigation decisions.\n• Control logic for robotic movement.", tech: ["Python", "Keras", "OpenAI", "ROS"], image: img7, video: video7, github: "https://github.com/PandoraS3" },
   { id: 8, title: "Web App Registration Management", desc: "System for managing user registration workflows.", longDesc: "• Web system for user registrations.\n• User-friendly interface.\n• Client-side validation.\n• Clean and responsive design.", tech: ["HTML", "CSS", "JavaScript"], image: img8, github: "https://github.com/PandoraS3" },
   { id: 9, title: "Cruise Booking Desktop App", desc: "Desktop application with full CRUD for cruise management.", longDesc: "• Desktop app for cruise bookings.\n• Full CRUD functionality.\n• Graphical interface with Tkinter.\n• SQL database management.", tech: ["Python", "Tkinter", "SQL", "CRUD"], image: img9, video: video9, github: "https://github.com/PandoraS3/Anwendung-zur-Buchung-von-Schiffsreisen" },
-  { id: 1, title: "Smart Library System (IoT & Robotics)", desc: "Smart IOT sysstem for a lybrary with Temi, Pepper and M5Stack", longDesc: "• Entwicklung einer Echtzeit-Erkennung freier und belegter Arbeitsplätze mittels IoT-Sensorik.\n• Implementierung einer Tablet-Oberfläche für Pepper mit HTML, CSS und JavaScript.\n• Integration der OpenAI API für kontextbezogene Sprachdialoge und natürliche Mensch-Roboter-Interaktion.\n• Entwicklung der Systemlogik mit Python unter Linux.", tech: ["Python", "HTML/CSS", "Linux", "OpenAI"], image: img10, video: video10, github: "https://github.com/PandoraS3/" }
+  { id: 10, title: "Smart Library System (IoT & Robotics)", desc: "Smart IOT sysstem for a lybrary with Temi, Pepper and M5Stack", longDesc: "• Entwicklung einer Echtzeit-Erkennung freier und belegter Arbeitsplätze mittels IoT-Sensorik.\n• Implementierung einer Tablet-Oberfläche für Pepper mit HTML, CSS und JavaScript.\n• Integration der OpenAI API für kontextbezogene Sprachdialoge und natürliche Mensch-Roboter-Interaktion.\n• Entwicklung der Systemlogik mit Python unter Linux.", tech: ["Python", "HTML/CSS", "Linux", "OpenAI"], image: img10, video: video10, github: "https://github.com/PandoraS3/" }
 ];
 
 export default function Projects() {
@@ -67,7 +67,7 @@ export default function Projects() {
   };
 
   const row1 = allProjects.slice(0, 5);
-  const row2 = allProjects.slice(5, 9);
+  const row2 = allProjects.slice(5, 10);
 
   return (
     <section id="projects" style={{ padding: isMobile ? "60px 0" : "120px 0", background: "#050810", position: "relative" }}>
